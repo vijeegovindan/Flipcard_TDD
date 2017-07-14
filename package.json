@@ -1,0 +1,25 @@
+{
+  "name": "flipcards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "module",
+  "scripts": {
+    "test": "NODE_ENV=test mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "crypto": "0.0.3",
+    "express": "^4.15.3",
+    "express-mustache": "^1.0.3",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7",
+    "pg": "^6.4.0",
+    "util": "^0.10.3"
+  }
+}
