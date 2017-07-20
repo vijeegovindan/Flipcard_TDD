@@ -61,7 +61,6 @@ req.getValidationResult().then(function(result){
 }) // POST : /flipcard
 routes.post("/flipcard/:id/delete",  function(req, res) {
     cards.findOneAndRemove({_id:req.params.id}, function(err, card){
-      console.log(res);
       res.redirect("/flipcard");
     });
 });

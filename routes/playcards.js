@@ -26,7 +26,6 @@ var random = Math.floor(Math.random() * count)
 
 routes.post('/playcards/:id/submit', function(req,res){
   cards.findOne({_id:req.params.id}).then(function(result){
-    console.log(res);
     if(req.body.answer == result.answer){
       res.redirect("/playcards?bool=t");
     }

@@ -33,7 +33,6 @@ routes.post("/edit",  function(req, res) {
           answer: req.body.answer}
       },
       function(err, card){
-        console.log(res);
         res.redirect("/edit?id="+req.body.cardid + "&success=true");
       }
     );
