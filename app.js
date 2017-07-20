@@ -5,11 +5,13 @@ const expressValidator = require('express-validator');
 const path             = require('path');
 const morgan           = require('morgan');
 const loginRoutes      = require('./routes/login.js');
-const signupRoutes      = require('./routes/signup.js');
+const signupRoutes     = require('./routes/signup.js');
+const flipcardRoutes   = require("./routes/flipcard.js");
+const playcards        = require("./routes/playcards.js");
+const editcards        = require("./routes/edit.js");
 const mongoose         = require('mongoose');
 const session          = require('express-session');
 const app              = express();
-
 // Morgan to log router activity
 if (app.get('env') == 'production') {
   app.use(morgan('common', {
@@ -21,13 +23,12 @@ if (app.get('env') == 'production') {
 } else {
   app.use(morgan('dev'));
 };
-
 // MongoDB access
 const nodeEnv = process.env.NODE_ENV || "development";
 const config = require("./config.json")[nodeEnv];
 mongoose.connect(config.mongoURL);
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8000));
 // Serve static files to server
 app.use(express.static(path.join(__dirname, "public")));
 // Setting up View Engine
@@ -46,11 +47,13 @@ app.use(session({
 // Routes
 app.use(loginRoutes);
 app.use(signupRoutes);
+app.use(flipcardRoutes);
+app.use(playcards);
+app.use(editcards);
+
 // Open Port
-//if (require.main === "module") {
-  app.listen(app.get('port'), function() {
-    console.log('Node app is running on port', app.get('port'));
-  });
-//};
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 module.exports = app;

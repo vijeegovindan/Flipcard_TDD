@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const deckSchema = new mongoose.Schema({
-    deckid: { type: Number, required: true, unique: true },
+    deckName: { type:String, required:true },
     userId : {type: mongoose.Schema.Types.ObjectId, ref:'users'}
 })
 

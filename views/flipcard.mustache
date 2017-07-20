@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flipcard</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <span>
+          <nav>
+              <a href="/playcards">Play Cards</a>
+          </nav>
+        </span>
+        <span class="title">Flipcard</span>
+      </div>
+      <div class="fields">
+        <ul>
+        <li class="msg">{{#messages}}<p>{{.}}</p>{{/messages}}</li>
+        <form action="/flipcard/new" method="post">
+          <li><input type="text" name="deckname" value="" placeholder="DeckName"></li>
+          <li><input type="text" name="question" value="" placeholder="Question"></li>
+          <li><input type="text" name="answer" value="" placeholder="Answer"></li>
+          <li><button type="submit">Submit</button></li>
+        </form>
+
+        </ul>
+        <ul>
+          {{#list}}
+            <li>Question : {{question}}</li>
+            <li>Answer : {{answer}}
+              <form method="post" action="/flipcard/{{_id}}/delete">
+                <button name="delete" id="delete">Delete</button>
+              </form>
+              <form method="post" action="/flipcard/{{_id}}/update">
+                <button name="edit" id="edit">Edit</button>
+              </form>
+            </li>
+          {{/list}}
+        <ul>
+
+      </div>
+  </div>
+  </body>
+</html>

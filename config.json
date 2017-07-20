@@ -3,6 +3,6 @@
    "mongoURL": "mongodb://localhost:27017/flipcards"
  },
  "test": {
-   "mongoURL": "mongodb://localhost:27017/flipcards"
+   "mongoURL": "mongodb://localhost:27017/flipcards_test"
  }
 }

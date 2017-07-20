@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flipcard</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <span>
+          <nav>
+              <a href="/flipcard">Flipcards</a>
+          </nav>
+        </span>
+        <span class="title">Flipcard</span>
+      </div>
+      <div class="fields">
+        <ul>
+          <li class="msg">{{#messages}}<p>{{.}}</p>{{/messages}}</li>
+          <li><label>Question : {{#result}}{{question}}{{/result}}</label></li>
+          <li><label>Please type in your answer</label></li>
+          <li>
+            <form method="post" action="/playcards/{{#result}}{{_id}}{{/result}}/submit">
+              <input type="text" id="answer" name="answer">
+              <button name="submit" id="submit">Submit</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+  </div>
+  </body>
+</html>

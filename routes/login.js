@@ -30,26 +30,32 @@ routes.post('/login',function(req, res){
     else{
       users.findOne({username: req.body.username})
          .then(function(user){
-           var config = {
-               keylen: 512,
-               digest: 'sha512'
-           };
-           var query = users.findOne({username: req.body.username});
-           query.select('hash salt iteration');
-           query.exec(function(err, result) {
-             var savedHash = result.hash;
-             var savedSalt = result.salt;
-             var savedIterations = result.iteration;
-             var hash = crypto.pbkdf2Sync(req.body.password, savedSalt, savedIterations, config.keylen, config.digest);
-             var hashedPassword = hash.toString('base64');
-             if(savedHash === hashedPassword){
-               req.session.username = user.username;
-               res.redirect("/flipcard");
-             }
-             else {
-                 res.render("login", {messages: "Enter a valid username and password"});
-             }
-            });
+          if(!user)
+          {
+            res.render ("login", {messages: "User not found"})
+          }
+          else {
+             var config = {
+                 keylen: 512,
+                 digest: 'sha512'
+             };
+               var query = users.findOne({username: req.body.username});
+               query.select('hash salt iteration');
+               query.exec(function(err, result) {
+               var savedHash = result.hash;
+               var savedSalt = result.salt;
+               var savedIterations = result.iteration;
+               var hash = crypto.pbkdf2Sync(req.body.password, savedSalt, savedIterations, config.keylen, config.digest);
+               var hashedPassword = hash.toString('base64');
+               if(savedHash === hashedPassword){
+                 req.session.username = req.body.username;
+                 res.redirect("flipcard");
+               }
+               else {
+                   res.render("login", {messages: "Enter a valid username and password"});
+               }
+              });
+            }
         });
       }
     });

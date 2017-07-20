@@ -63,7 +63,7 @@ body {
 ul {
   display: flex;
   flex-flow: column;
-  min-width: 50vw;
+  min-width: 40vw;
   padding: 1vw;
   list-style: none;
 }
@@ -105,4 +105,9 @@ nav a:hover{
 }
 .display_msg{
     width: 60%;
+}
+
+hr{
+  width: 100%;
+  align: center;
 }
